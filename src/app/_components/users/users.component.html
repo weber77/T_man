@@ -4,20 +4,7 @@
   <div class="nav-btn">Menu</div>
   <div class="container">
   
-    <div class="sidebar">
-      <nav>
-        <a [routerLink]="['/']" >T.<span>Manager</span></a>
-        <ul>
-          <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']"><a>Dashboard</a></li>
-          <li [routerLink]="['/users']" [routerLinkActive]="['active']"><a>Users</a></li>
-          <li [routerLink]="['/admins']" [routerLinkActive]="['active']"><a>Admins</a></li>
-          <li [routerLink]="['/allgroups']" [routerLinkActive]="['active']"><a>Groups</a></li>
-          <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
-          <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
-          <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
-        </ul>
-      </nav>
-    </div>
+    <app-sider></app-sider>
   
     <div class="main-content">
       <div class="my-4">
@@ -52,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users; let i = index;">
+        <tr *ngFor="let user of response; let i = index;">
           <th scope="row">{{i+1}}</th>
           <td class="text-capitalize">{{user.firstName}}</td>
           <td class="text-capitalize">{{user.lastName}}</td>

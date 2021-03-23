@@ -4,25 +4,12 @@
   <div class="nav-btn">Menu</div>
   <div class="container">
   
-    <div class="sidebar">
-      <nav>
-        <a href="#">T.<span>Manager</span></a>
-        <ul>
-          <li [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="active"><a>Dashboard</a></li>
-          <li [routerLink]="['/users']" [routerLinkActive]="['active']"><a>Users</a></li>
-          <li [routerLink]="['/admins']" [routerLinkActive]="['active']"><a>Admins</a></li>
-          <li [routerLink]="['/allgroups']" [routerLinkActive]="['active']"><a>Groups</a></li>
-          <li [routerLink]="['/mygroups']" [routerLinkActive]="['active']"><a>My Groups</a></li>
-          <li [routerLink]="['/invitations']" [routerLinkActive]="['active']"><a>Invitations</a></li>
-          <li [routerLink]="['/requests']" [routerLinkActive]="['active']"><a >Requests</a></li>
-        </ul>
-      </nav>
-    </div>
+    <app-sider></app-sider>
   
     <div class="main-content">
       <h1>Dashboard</h1>
       <p>Here you can do your stuff!</p>
-      <h3 class="p-4">Welcome, {{currentUsername}}</h3>
+      <h3 class="p-4">Welcome, {{currentUser.username}}</h3>
       <div class="panel-wrapper">
         <div class="panel-head">
           News

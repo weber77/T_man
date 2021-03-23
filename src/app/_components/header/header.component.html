@@ -23,11 +23,9 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active">Home</a>
+            <a href="/home" class="nav-link" routerLink="home">Home </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link active" routerLink="/login">Login</a>
-          </li>
+         
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="material-icons"></i>
@@ -35,6 +33,24 @@
                 Account
               </p>
             </a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a href="/signup" class="nav-link" routerLink="signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="/signin" class="nav-link" routerLink="signin">Login</a>
+          </li>
+        </ul>
+      
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
           </li>
         </ul>
       </div>

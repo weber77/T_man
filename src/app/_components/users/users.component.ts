@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../_models/user';
-import {UserService} from '../../_services/user.service';
-import {Group} from '../../_models/group';
-import {GroupService} from '../../_services/group.service';
-import {UserGroup} from '../../_models/user-group';
-import {Admin} from '../../_models/admin';
+import { User } from '../../_models/user';
+import { UserService } from '../../_services/user.service';
+import { Group } from '../../_models/group';
+import { GroupService } from '../../_services/group.service';
+import { UserGroup } from '../../_models/user-group';
+import { Admin } from '../../_models/admin';
 
 @Component({
   selector: 'app-users',
@@ -19,20 +19,38 @@ export class UsersComponent implements OnInit {
   group = new Group(0, '', '', new Admin(0, '', '', '', '', ''));
   user = new User(0, '', '', '', '', '');
   message = '';
+  // users: any[] = [];
+  response: any;
+
 
   constructor(
     private userService: UserService,
     private groupService: GroupService
   ) {
-    this.users = this.getUsers();
+    // this.users = this.getUsers();
     this.groups = this.groupService.getGroups();
   }
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
-  getUsers(): User[] {
-    return this.userService.getUsers();
+  getUsers(): any {
+    this.userService.getUsersRequest().subscribe(
+      data => {
+
+        this.response = data;
+        console.log(this.response);
+        
+        
+      },
+      err => {
+
+      }
+    );
+
+
+
   }
 
   showGroups(user: User): void {

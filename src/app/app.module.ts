@@ -28,7 +28,8 @@ import { BoardAdminComponent } from './_components/board-admin/board-admin.compo
 import { BoardModeratorComponent } from './_components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './_components/board-user/board-user.component';
 import { HeaderComponent } from './_components/header/header.component';
-import { FooterComponent } from './_components/footer/footer.component'
+import { FooterComponent } from './_components/footer/footer.component';
+import { SiderComponent } from './_components/sider/sider.component'
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { FooterComponent } from './_components/footer/footer.component'
     BoardModeratorComponent,
     BoardUserComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SiderComponent
   ],
   imports: [
     BrowserModule,

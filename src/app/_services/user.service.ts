@@ -20,6 +20,27 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+
+  getUsersRequest(): Observable<any> {
+    return this.http.get(API_URL + '/getUsers?title=', httpOptions);
+  }
+
+  getUserById(id):Observable<any> {
+    return this.http.get(API_URL + `/getUser/${id}`, httpOptions);
+  }
+
+
+
+
+
+
+
+
+
+  
+
+
+
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + '/test/all', { responseType: 'text' });
   }
@@ -60,12 +81,11 @@ export class UserService {
     return '';
   }
 
+
+
+
   getUsers(): User[] {
     return JSON.parse(localStorage.getItem('users') as string);
-  }
-
-  getUsersRequest(): Observable<any> {
-    return this.http.get(API_URL + '/getUsers?title=', httpOptions);
   }
 
   getAdmins(): User[] {

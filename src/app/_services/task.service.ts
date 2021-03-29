@@ -1,26 +1,54 @@
 import {Injectable} from '@angular/core';
 import {Task} from '../_models/task';
 import {Group} from "../_models/group";
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+const API_URL = "http://localhost:8080/api/tasks/";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TaskService {
   taskCount = 4;
   allTasks: Task[];
 
   constructor(
+    private http: HttpClient
   ) {
     this.allTasks = this.getTasks();
   }
+
+  getTask(id): Observable<any> {
+    return this.http.get(API_URL + `/getTaskById/${id}`, httpOptions);
+  }
+
+  createTask(task:any): Observable<any> {
+    return this.http.post(API_URL + '/createTask', task, httpOptions);
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   getTasks(): Task[] {
     return JSON.parse(localStorage.getItem('tasks') as string);
   }
 
-  getTask(taskId: number): Task {
-    return this.getTasks().find(task => task.id === taskId) as Task;
-  }
+ 
 
   getTasksOfGroup(groupId: number): Task[] {
     if (this.getTasks()) {

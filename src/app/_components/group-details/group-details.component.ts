@@ -14,10 +14,13 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class GroupDetailsComponent implements OnInit {
 
-  group: Group;
+  
   id: number;
-  users: User[];
-  tasks: Task[];
+  tasks: any [] = [];
+  response: any;
+  admin: any;
+  members: any [] = [];
+  groupId: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,22 +28,55 @@ export class GroupDetailsComponent implements OnInit {
     private userService: UserService,
     private taskService: TaskService
   ) {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id') as string, 10);
-    this.group = this.getGroup(this.id);
-    this.users = this.getUsers(this.id);
-    this.tasks = this.getTasks(this.id);
+    this.groupId = this.route.snapshot.paramMap.get('_id') ;
+    
   }
 
   ngOnInit(): void {
+    this.getGroups(this.groupId);
   }
 
-  getGroup(id: number): Group {
-    return this.groupService.getGroup(id);
-  }
 
-  getUsers(groupId: number): User[] {
-    return this.userService.getUsersOfGroup(groupId);
+  getGroups(id): any {
+    this.groupService.getGroupById(id).subscribe(
+      (data: any) => 
+      
+      { 
+
+        this.response = data;        
+        this.userService.getUserById(this.response.admin).subscribe(
+          (admin: any) =>{
+            this.admin = admin;         
+          }
+        );
+
+        this.response.members.forEach(element => {
+          this.userService.getUserById(element).subscribe(
+            (user: any) => {              
+              this.members.push(user);
+            }
+          )
+        });
+        
+        this.response.tasks.forEach(element => {
+          this.taskService.getTask(element).subscribe(
+            (task: any) =>{
+              this.tasks.push(task);
+            }
+          )
+        });
+      
+      },
+      err => {
+
+      }
+    );
+
+
+
   }
+  
+
 
   getTasks(groupId: number): Task[] {
     return this.taskService.getTasksOfGroup(groupId);

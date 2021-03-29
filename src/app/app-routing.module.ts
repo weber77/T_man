@@ -35,9 +35,9 @@ const routes: Routes = [
   { path: 'allgroups', component: GroupsComponent },
   { path: 'mygroups', component: MyGroupsComponent },
   { path: 'groups/creategroup', component: CreateGroupComponent },
-  { path: 'groups/:id', component: GroupDetailsComponent },
-  { path: 'groups/:id/createtask', component: CreateTaskComponent },
-  { path: 'groups/:groupId/tasks/:taskId', component: EditTaskComponent },
+  { path: 'groups/:_id', component: GroupDetailsComponent },
+  { path: 'groups/:_id/createtask', component: CreateTaskComponent },
+  { path: 'groups/:groupId/tasks/:_id', component: EditTaskComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

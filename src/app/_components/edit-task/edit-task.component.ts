@@ -30,7 +30,7 @@ export class EditTaskComponent implements OnInit {
     this.groupId = parseInt(this.route.snapshot.paramMap.get('groupId') as string, 10);
     this.taskId = parseInt(this.route.snapshot.paramMap.get('taskId') as string, 10);
     this.group = this.groupService.getGroup(this.groupId);
-    this.task = this.taskService.getTask(this.taskId);
+    // this.task = this.taskService.getTask(this.taskId);
     this.groupMembers = this.userService.getUsersOfGroup(this.groupId);
   }
 

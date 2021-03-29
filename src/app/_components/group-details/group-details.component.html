@@ -25,10 +25,10 @@
         <p>Here you can view the details of a group!</p>
       </div>
       <div class="jumbotron px-5 py-2">
-        <h3 class="display-5 text-capitalize">{{group.name}}</h3>
-        <p class="lead">{{group.description}}</p>
+        <h3 class="display-5 text-capitalize">{{response.name}}</h3>
+        <p class="lead">{{response.description}}</p>
         <hr class="my-4">
-        <p class="text-capitalize"><b>Admin: </b>{{group.admin.firstName}} {{group.admin.lastName}}</p>
+        <p class="text-capitalize"><b>Admin: </b>{{admin.username}} {{admin.username}}</p>
       </div>
         <div class="my-5">
           <h4>Users</h4>
@@ -44,7 +44,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users; let i = index;">
+          <tr *ngFor="let user of members; let i = index;">
             <th scope="row">{{i+1}}</th>
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
@@ -57,19 +57,19 @@
         <p>Here you can find all tasks for members of this group!</p>
       </div>
       <div class="d-flex justify-content-end align-items-end my-2">
-        <button [routerLink]="['/groups', group.id, 'createtask']" type="button" class="btn btn-success px-4 py-1">Add Task</button>
+        <button [routerLink]="['/groups', response._id, 'createtask']" type="button" class="btn btn-success px-4 py-1">Add Task</button>
       </div>
           <div class="card-columns">
             <div *ngFor="let task of tasks" class="card" style="width: 18rem;">
               <div class="card-body text-capitalize">
                 <h5 class="card-title">{{task.title}}</h5><br><hr>
                 <div *ngIf="task.user">
-                  <h6 class="card-subtitle mb-2 text-muted"><b>Assigned: </b>{{task.user.firstName}} {{task.user.lastName}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted"><b>Assigned: </b>{{task._id}} {{task.user}}</h6>
                 </div>
                 <h6 class="card-subtitle mb-2 text-muted"><b>Assignment Status: </b>{{task.assignmentStatus}}</h6>
                 <h6 class="card-subtitle mb-2 text-muted"><b>Progress Status: </b>{{task.progressStatus}}</h6>
-                <button type="button" [routerLink]="['/groups', group.id, 'tasks', task.id]" class="btn-primary px-2">Update</button>
-                  <button (click)="deleteTask(task.id)" class="btn-danger px-2">Delete</button>
+                <button type="button" [routerLink]="['/groups', groupId, 'tasks', task._id]" class="btn-primary px-2">Update</button>
+                  <button (click)="deleteTask(task._id)" class="btn-danger px-2">Delete</button>
               </div>
             </div>
       </div>

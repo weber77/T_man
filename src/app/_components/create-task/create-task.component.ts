@@ -60,4 +60,59 @@ export class CreateTaskComponent implements OnInit {
   getGroup(): Group {
     return this.groupService.getGroup(this.id);
   }
+
+  /**
+   * constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private taskService: TaskService,
+    private groupService: GroupService
+  ) {
+    this.id =this.route.snapshot.paramMap.get('_id');
+   
+  }
+
+  ngOnInit(): void {
+  }
+
+  getGroupMembers(groupId: number): User[] {
+    return this.userService.getUsersOfGroup(groupId);
+  }
+
+
+  addTask(): void {
+
+    this.task.assignmentStatus = "Initialized";
+    this.task.progressStatus = "0%";
+    this.task.user = this.id;
+    this.taskService.createTask(this.task).subscribe(
+      (data: any) => {
+        console.log(data);
+      });
+  }
+
+  getGroups(id): any {
+    this.groupService.getGroupById(id).subscribe(
+      (data: any) => 
+      
+      { 
+
+        this.response = data;        
+        this.response.members.forEach(element => {
+          this.userService.getUserById(element).subscribe(
+            (user: any) => {              
+              this.members.push(user);
+            }
+          )
+        });
+        
+      
+      },
+      err => {
+
+      }
+    );
+}
+   */
 }
